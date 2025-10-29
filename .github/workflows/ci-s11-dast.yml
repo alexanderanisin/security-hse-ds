@@ -37,8 +37,9 @@ jobs:
       - name: ZAP Baseline
         run: |
           docker run --rm --network host \
+            -v $PWD:/zap/wrk \
             -v $PWD:/home/zap \
-            -w /home/zap \
+            -w /zap/wrk \
             ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
               -t http://localhost:8080 \
               -r zap_baseline.html \
