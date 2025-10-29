@@ -28,7 +28,14 @@ jobs:
 
       - name: Trivy image (JSON)
         run: |
-          docker run --rm -v $PWD:/work aquasec/trivy:latest image --format json --output /work/EVIDENCE/S12/trivy.json --ignore-unfixed s09s12-app:ci || true
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v $PWD:/work \
+            aquasec/trivy:latest image \
+            --format json \
+            --output /work/EVIDENCE/S12/trivy.json \
+            --ignore-unfixed \
+            s09s12-app:ci || true
 
       - uses: actions/upload-artifact@v4
         with:

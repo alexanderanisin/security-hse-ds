@@ -20,40 +20,15 @@ S09 - SBOM & SCA: сгенерирован SBOM (CycloneDX), выполнен SC
 
 S10 - SAST & Secrets: выполнены Semgrep (SARIF) и Gitleaks (JSON).
 Артефакты: EVIDENCE/S10/semgrep.sarif, EVIDENCE/S10/gitleaks.json.
-Actions: https://github.com/alexanderanisin/security-hse-ds/actions/runs/18914310350/job/53993411894. Примечание: FP рассмотрены, при необходимости добавлены исключения.
+Actions: https://github.com/alexanderanisin/security-hse-ds/actions/runs/18914310350/job/53993411894. Примечание: FP для SAST рассмотрены, при необходимости добавлены исключения. Секретов не найдено.
 
 ---
 
 ## 3) DAST **или** Policy (Container/IaC) (DS3)
 
-> Для «1» достаточно одного из классов; на «2» - желательно оба **или** один глубже (настроенный профиль/таргет).
-
-### Вариант A - DAST (лайт)
-
-- **Инструмент/таргет:** TODO (локальный стенд/демо-контейнер допустим)
-- **Как запускал:**
-
-  ```bash
-  zap-baseline.py -t http://127.0.0.1:8080 -m 3 \
-    -r EVIDENCE/dast-YYYY-MM-DD.html -J EVIDENCE/dast-YYYY-MM-DD.json
-  ```
-
-- **Отчёт:** `EVIDENCE/dast-YYYY-MM-DD.pdf#alert-...`
-- **Выводы:** TODO: 1-2 meaningful наблюдения
-
-### Вариант B - Policy / Container / IaC
-
-- **Инструмент(ы):** TODO (trivy config / checkov / conftest и т.п.)
-- **Как запускал:**
-
-  ```bash
-  trivy image --severity HIGH,CRITICAL --exit-code 1 <image:tag> > EVIDENCE/policy-YYYY-MM-DD.txt
-  trivy config . --severity HIGH,CRITICAL --exit-code 1 --format table > EVIDENCE/trivy-YYYY-MM-DD.txt
-  checkov -d . -o cli > EVIDENCE/checkov-YYYY-MM-DD.txt
-  ```
-
-- **Отчёт(ы):** `EVIDENCE/policy-YYYY-MM-DD.txt`, `EVIDENCE/trivy-YYYY-MM-DD.txt`, …
-- **Выводы:** TODO: какие правила нарушены/исправлены
+S11 - DAST (ZAP baseline) против http://localhost:8080.
+Артефакты: EVIDENCE/S11/zap_baseline.html, EVIDENCE/S11/zap_baseline.json.
+Actions: https://github.com/alexanderanisin/security-hse-ds/actions/runs/18915076170/job/53996086299. Примечание: найденные предупреждения (Medium/Low, отсутствие security headers) рассмотрены и приняты.
 
 ---
 
