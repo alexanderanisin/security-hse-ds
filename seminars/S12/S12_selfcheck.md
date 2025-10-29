@@ -2,7 +2,7 @@
 
 - [x] **Actions**: job _S12 - IaC & Container Security_ выполнен и зелёный.
 - [x] **Артефакты** в репозитории: `EVIDENCE/S12/hadolint.json`, `EVIDENCE/S12/checkov.json`, `EVIDENCE/S12/trivy.json`.
-- [ ] **Artifacts** в Actions содержат те же файлы.
+- [x] **Artifacts** в Actions содержат те же файлы.
 - [ ] **DS.md**: добавлены 3-6 строк по S12, **ссылка на успешный job** и **≥2 меры харднинга** (чётко перечислены).
 - [ ] (опц.) Короткая пометка: какие предупреждения остались и почему (FP/accept/план).
 
