@@ -24,9 +24,12 @@ jobs:
 
       - name: ZAP Baseline
         run: |
-          docker run --rm --network host -v $PWD:/zap/wrk -w /zap/wrk -u $(id -u):$(id -g) ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
-            -t http://localhost:8080 \
-            -r zap_baseline.html -J zap_baseline.json -d || true
+          docker run --rm --network host -v $PWD:/zap/wrk \
+            -w /zap/wrk \
+            -u $(id -u):$(id -g) \
+            -e "ZAP_USER_HOME=/zap/wrk" \
+            ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+            -t http://localhost:8080 -r zap_baseline.html -J zap_baseline.json -d || true
           mv zap_baseline.* EVIDENCE/S11/ || true
 
       - uses: actions/upload-artifact@v4
